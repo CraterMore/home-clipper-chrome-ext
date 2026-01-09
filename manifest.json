@@ -1,8 +1,14 @@
 {
   "manifest_version": 3,
   "name": "Home Clipper",
-  "version": "1.0",
+  "version": "0.1",
   "description": "Save homes and apartments to a database",
+  "permissions": [
+    "activeTab"
+  ],
+  "action": {
+    "default_popup": "popup.html"
+  },
   "icons": {
     "16": "images/icon-16.png",
     "32": "images/icon-32.png",

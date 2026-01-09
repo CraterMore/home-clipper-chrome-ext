@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <style>
+    body {
+      width: 400px;
+      padding: 16px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      font-family: sans-serif;
+    }
+    button {
+      margin-top: 12px;
+      padding: 8px 16px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <h3>Home Clipper</h3>
+  <table>
+    <tr>
+        <td>Site Name:</td>
+        <td><p id="siteName"></p></td>
+    </tr>
+    <tr>
+        <td>Site URL:</td>
+        <td><p id="siteUrl"></p></td>
+    </tr>
+  </table>
+  <button id="save">Save</button>
+  <script src="popup.js" type="module"></script>
+</body>
+</html>
