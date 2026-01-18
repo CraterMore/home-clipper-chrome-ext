@@ -3,4 +3,11 @@
   You are currently on the tab: {{ siteName()}}
 </p>
 
+<p>You are <strong>{{ user() ? 'signed in' : 'not signed in' }}</strong></p>
+
+@if (user()) {
+  <p>Hello, {{ user().email }}</p>
+}
+
+<button (click)="goToLogin()">Login</button>
 <button (click)="onClick()">Save Listing</button>
