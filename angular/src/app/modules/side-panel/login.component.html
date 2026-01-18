@@ -11,9 +11,11 @@
     <div class="actions">
         <button class="btn btn-secondary btn-full" (click)="goBack()">Back</button>
         <button class="btn btn-primary btn-full" (click)="onSubmit()">{{mode() === 'login' ? 'Login' : 'Register'}}</button>
+        <a class="link-secondary" (click)="switchMode()">
+            {{ mode() === 'login' ? 'Create an account' : 'Back to sign in' }}
+        </a>
     </div>
 
-    <a class="link-secondary" (click)="switchMode()">
-        {{ mode() === 'login' ? 'Create an account' : 'Back to sign in' }}
-    </a>
+
+
 </div>

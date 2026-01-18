@@ -1,0 +1,186 @@
+/* Variables */
+$primary-color: #4f46e5;
+$primary-hover: #4338ca;
+$bg-color: #f9fafb;
+$surface-color: #ffffff;
+$text-main: #111827;
+$text-secondary: #6b7280;
+$border-color: #e5e7eb;
+$radius: 12px;
+$space-sm: 8px;
+$space-md: 16px;
+$space-lg: 24px;
+
+:host {
+    display: block;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    color: $text-main;
+    background-color: $bg-color;
+    height: 100vh;
+    overflow-y: auto;
+}
+
+.container {
+    padding: $space-lg;
+    display: flex;
+    flex-direction: column;
+    gap: $space-lg;
+    height: 100%;
+    box-sizing: border-box;
+}
+
+header {
+    text-align: center;
+
+    h1 {
+        font-size: 1.5rem;
+        font-weight: 700;
+        margin: 0;
+        color: $primary-color;
+        letter-spacing: -0.025em;
+    }
+
+    h2 {
+        font-size: 1.25rem;
+        font-weight: 600;
+        margin: 0 0 $space-sm;
+    }
+
+    .subtitle {
+        margin: 0;
+        color: $text-secondary;
+        font-size: 0.875rem;
+    }
+}
+
+.info-card {
+    background: $surface-color;
+    border: 1px solid $border-color;
+    border-radius: $radius;
+    padding: $space-md;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+    display: flex;
+    flex-direction: column;
+    gap: $space-md;
+}
+
+.info-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 0;
+    font-size: 0.875rem;
+
+    .label {
+        color: $text-secondary;
+    }
+
+    .value {
+        font-weight: 500;
+        max-width: 60%;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        text-align: right;
+
+        &.signed-in {
+            color: #059669;
+            /* Green */
+        }
+    }
+}
+
+.user-greeting {
+    margin: 0;
+    font-size: 0.875rem;
+    text-align: center;
+    color: $text-secondary;
+    border-top: 1px solid $border-color;
+    padding-top: $space-sm;
+}
+
+.actions,
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: $space-md;
+}
+
+.form-input {
+    width: 100%;
+    padding: $space-md;
+    border: 1px solid $border-color;
+    border-radius: $radius;
+    font-size: 0.875rem;
+    box-sizing: border-box;
+    transition: border-color 0.2s, box-shadow 0.2s;
+    background-color: $surface-color;
+    color: $text-main;
+
+    &:focus {
+        outline: none;
+        border-color: $primary-color;
+        box-shadow: 0 0 0 3px rgba($primary-color, 0.1);
+    }
+
+    &::placeholder {
+        color: #9ca3af;
+    }
+}
+
+.btn {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px $space-md;
+    border-radius: $radius;
+    font-weight: 500;
+    font-size: 0.875rem;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    border: 1px solid transparent;
+    width: 100%;
+    font-family: inherit;
+
+    &-primary {
+        background-color: $primary-color;
+        color: white;
+
+        &:hover {
+            background-color: $primary-hover;
+        }
+
+        &:active {
+            transform: translateY(1px);
+        }
+    }
+
+    &-secondary,
+    &-outline {
+        background-color: transparent;
+        color: $text-secondary;
+        border-color: $border-color;
+
+        &:hover {
+            border-color: $text-secondary;
+            color: $text-main;
+            background-color: white;
+        }
+
+        &:active {
+            transform: translateY(1px);
+        }
+    }
+}
+
+.link-secondary {
+    color: $text-secondary;
+    text-decoration: underline;
+    transition: color 0.2s;
+    text-align: center;
+    cursor: pointer;
+
+    &:hover {
+        color: $text-main;
+    }
+}

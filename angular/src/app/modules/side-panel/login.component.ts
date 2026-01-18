@@ -8,7 +8,7 @@ import { Router } from '@angular/router'
     selector: 'app-login',
     imports: [CommonModule, ReactiveFormsModule],
     templateUrl: 'login.component.html',
-    styleUrls: ['popup.component.scss']
+    styleUrls: ['side-panel.component.scss']
 })
 export class LoginComponent {
     email = new FormControl('')
@@ -18,7 +18,7 @@ export class LoginComponent {
     private router = inject(Router)
 
     goBack() {
-        this.router.navigate(["/popup"]);
+        this.router.navigate(["/side-panel"]);
     }
 
     onSubmit() {

@@ -1,2 +1,33 @@
-<h1 style="text-align: center">Side Panel</h1>
-<p style="text-align: center">You opened the side panel!</p>
+<div class="container">
+  <header>
+    <h1>Home Clipper</h1>
+  </header>
+
+  <div class="content">
+    <div class="info-card">
+      <p class="info-row">
+        <span class="label">Current Tab</span>
+        <span class="value">{{ siteName()}}</span>
+      </p>
+
+      <p class="info-row">
+        <span class="label">Status</span>
+        <strong class="value" [class.signed-in]="user()">{{ user() ? 'Signed in' : 'Not signed in' }}</strong>
+      </p>
+
+      @if (user()) {
+      <p class="user-greeting">Hello, {{ user().email }}</p>
+      }
+    </div>
+  </div>
+
+  <div class="actions">
+    @if (!user()) {
+      <button class="btn btn-primary" (click)="goToLogin()">Login</button>
+    } 
+    @else {
+      <button class="btn btn-secondary" (click)="logout()">Logout</button>
+      <button class="btn btn-primary" (click)="onClick()">Save Listing</button>
+    }
+  </div>
+</div>
