@@ -1,7 +1,8 @@
 import { CommonModule } from '@angular/common'
-import { Component, signal } from '@angular/core'
+import { Component, inject, signal } from '@angular/core'
 import {FormControl, ReactiveFormsModule} from '@angular/forms';
-import { getAuth, signInWithEmailAndPassword } from 'firebase/auth/web-extension';
+import { createUserWithEmailAndPassword, getAuth, signInWithEmailAndPassword } from 'firebase/auth/web-extension';
+import { Router } from '@angular/router'
 
 @Component({
     selector: 'app-login',
@@ -12,17 +13,41 @@ import { getAuth, signInWithEmailAndPassword } from 'firebase/auth/web-extension
 export class LoginComponent {
     email = new FormControl('')
     password = new FormControl('')
+    mode = signal<'login' | 'register'>('login')
+
+    private router = inject(Router)
+
+    goBack() {
+        this.router.navigate(["/popup"]);
+    }
 
     onSubmit() {
         const auth = getAuth()
-        signInWithEmailAndPassword(auth, this.email.value, this.password.value)
-        .then((userCredential) => {
-            const user = userCredential.user;
-            console.log(user.email + " is signed in");
-        })
-        .catch((error) => {
-            const errorCode = error.code;
-            const errorMessage = error.message;
-        });
+
+        if (this.mode() === 'login') {
+            signInWithEmailAndPassword(auth, this.email.value, this.password.value)
+            .then((userCredential) => {
+                const user = userCredential.user;
+                this.goBack();
+            })
+            .catch((error) => {
+                const errorCode = error.code;
+                const errorMessage = error.message;
+            });
+        } else {
+            createUserWithEmailAndPassword(auth, this.email.value, this.password.value)
+            .then((userCredential) => {
+                const user = userCredential.user;
+                this.goBack();
+            })
+            .catch((error) => {
+                const errorCode = error.code;
+                const errorMessage = error.message;
+            });
+        }
+    }
+
+    switchMode() {
+        this.mode.set(this.mode() === 'login' ? 'register' : 'login')
     }
 }

@@ -2,7 +2,7 @@ import { CommonModule } from '@angular/common'
 import { Component, Inject, inject, signal } from '@angular/core'
 import { Router } from '@angular/router'
 import { TAB_ID } from 'src/app/app.config'
-import { getAuth, onAuthStateChanged } from "firebase/auth";
+import { getAuth, onAuthStateChanged, signOut } from "firebase/auth";
 import { initializeApp } from "firebase/app";
 
 @Component({
@@ -17,6 +17,12 @@ export class PopupComponent {
   siteUrl = signal('')
   user = signal(null)
 
+  private app = initializeApp({
+      apiKey: "AIzaSyDzbxQbO--v37RXbsghMM8rc8vr2oYJjKA",
+      authDomain: "home-clipper.firebaseapp.com",
+      projectId: "home-clipper"
+    });
+
   private router = inject(Router)
 
   constructor(@Inject(TAB_ID) readonly tabId: number) {
@@ -25,12 +31,8 @@ export class PopupComponent {
       this.siteUrl.set(tabs[0].url)
     })
 
-    const app = initializeApp({
-      apiKey: "AIzaSyDzbxQbO--v37RXbsghMM8rc8vr2oYJjKA",
-      authDomain: "home-clipper.firebaseapp.com",
-      projectId: "home-clipper"
-    });
-    const auth = getAuth(app);
+    
+    const auth = getAuth(this.app);
     onAuthStateChanged(auth, (user) => {
       if (user) {
         this.user.set(user)
@@ -69,5 +71,14 @@ export class PopupComponent {
 
   goToLogin() {
     this.router.navigate(['/popup/login'])
+  }
+
+  logout() {
+    const auth = getAuth(this.app);
+    signOut(auth).then(() => {
+      this.user.set(null)
+    }).catch((error) => {
+      console.log(error)
+    });
   }
 }

@@ -1,3 +1,19 @@
-<input type="email" placeholder="Email" [formControl]="email">
-<input type="password" placeholder="Password" [formControl]="password">
-<button (click)="onSubmit()">Login</button>
+<div class="container login-container">
+    <header>
+        <h2>{{ mode() === 'login' ? 'Sign in' : 'Create an account' }}</h2>
+    </header>
+
+    <div class="form-group">
+        <input type="email" class="form-input" placeholder="Email" [formControl]="email">
+        <input type="password" class="form-input" placeholder="Password" [formControl]="password">
+    </div>
+
+    <div class="actions">
+        <button class="btn btn-secondary btn-full" (click)="goBack()">Back</button>
+        <button class="btn btn-primary btn-full" (click)="onSubmit()">{{mode() === 'login' ? 'Login' : 'Register'}}</button>
+    </div>
+
+    <a class="link-secondary" (click)="switchMode()">
+        {{ mode() === 'login' ? 'Create an account' : 'Back to sign in' }}
+    </a>
+</div>
