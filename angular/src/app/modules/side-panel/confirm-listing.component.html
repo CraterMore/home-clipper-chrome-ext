@@ -1,0 +1,23 @@
+<div class="container">
+    @if (listingResource.isLoading()) {
+        <div class="loading-container">
+            <div class="spinner"></div>
+            <p>Extracting listing details...</p>
+        </div>
+    } @else {
+        <header>
+            <h2>Confirm Listing Details</h2>
+            <sub>{{ listingResource.value()?.address }}</sub>
+        </header>
+
+        <div class="form-group">
+            
+        </div>
+
+        <div class="actions">
+            <button class="btn btn-secondary btn-full" (click)="goBack()">Cancel</button>
+            <button class="btn btn-primary btn-full" (click)="onSubmit()">Confirm & Save</button>
+        </div>
+    }
+
+</div>

@@ -1,0 +1,21 @@
+export interface ApartmentListing {
+    sourceURL: string,
+    address: string | null,
+    price: number,
+    leaseLength: number | null,
+    type: string,
+    bedrooms: number,
+    bathrooms: number | null,
+    squareFootage: number | null,
+    availableDate: string,
+    description: string | null,
+    utilitiesIncluded: string[],
+    dogPolicy: string | null,
+    catPolicy: string | null,
+    petFee: number | null,
+    petFeeFrequency: string | null,
+    parkingAvailability: string | null,
+    parkingFee: number | null,
+    parkingFeeFrequency: string | null,
+    laundry: string | null
+}
